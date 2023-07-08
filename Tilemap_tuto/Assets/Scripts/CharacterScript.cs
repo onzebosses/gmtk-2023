@@ -28,35 +28,38 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (behavior == Behavior.Controllable)
-        {
-            UpdateControllable();
-        }
-        if (behavior == Behavior.AutoMoving)
-        {
-            UpdateMoving();
-        }
-        if (behavior == Behavior.Still)
-        {
-            UpdateStill();
+        switch (behavior){
+            case Behavior.Controllable:
+                UpdateControllable();
+                break;
+            case Behavior.AutoMoving:
+                UpdateAutoMoving();
+                break;
+            case Behavior.Still:
+                UpdateStill();
+                break;
+            default:
+                break;
+
         }
     }
 
     void ChangeBehavior(Behavior otherBehavior, CharacterData otherData)
     {
-        if (otherBehavior == Behavior.Controllable)
-        {
-            InitControllable(otherData);
+        switch (behavior){
+            case Behavior.Controllable:
+                InitControllable(otherData);
+                break;
+            case Behavior.AutoMoving:
+                InitAutoMoving(otherData);
+                break;
+            case Behavior.Still:
+                InitStill(otherData);
+                break;
+            default:
+                break;
+
         }
-        if (otherBehavior == Behavior.AutoMoving)
-        {
-            InitMoving(otherData);
-        }
-        if (otherBehavior == Behavior.Still)
-        {
-            InitStill(otherData);
-        }
-        behavior = otherBehavior;
     }
 
     public void InitControllable(CharacterData otherData)
@@ -64,7 +67,7 @@ public class Character : MonoBehaviour
 
     }
 
-    public void InitMoving(CharacterData otherData)
+    public void InitAutoMoving(CharacterData otherData)
     {
 
     }
@@ -79,7 +82,7 @@ public class Character : MonoBehaviour
 
     }
 
-    public void UpdateMoving()
+    public void UpdateAutoMoving()
     {
 
     }

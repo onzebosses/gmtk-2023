@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{dcd95cd8-e278-4f87-a65e-de16b54c0c3c}">
+		<property name="assetPath">
+			<value>AMBIENCE/QP08 0825 Decid forest East early bird.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>96.181333333333328</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2f67ee47-b1a0-418f-ae6f-5e31277dccba}</destination>
+		</relationship>
+	</object>
+</objects>

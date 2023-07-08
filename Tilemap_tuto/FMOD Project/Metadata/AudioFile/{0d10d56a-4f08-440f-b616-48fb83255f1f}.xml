@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0d10d56a-4f08-440f-b616-48fb83255f1f}">
+		<property name="assetPath">
+			<value>MUSIC/TEST/(10) Senza di me - Anna Oxa.flac</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>203.40000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2f67ee47-b1a0-418f-ae6f-5e31277dccba}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -121,7 +121,7 @@
                     "name": "",
                     "id": "39f08e95-e973-4308-94f5-5235bddc2119",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",

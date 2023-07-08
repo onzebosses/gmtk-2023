@@ -15,9 +15,9 @@ public class CharacterData
 public class Character : MonoBehaviour
 {
     public Behavior behavior;
-    public bool is_frozen;
-    public CharacterData previous_state;
-    public CharacterData current_state;
+    public bool isFrozen;
+    public CharacterData previousState;
+    public CharacterData currentState;
 
     // Start is called before the first frame update
     void Start()
@@ -42,34 +42,34 @@ public class Character : MonoBehaviour
         }
     }
 
-    void ChangeBehavior(Behavior other_behavior, CharacterData other_data)
+    void ChangeBehavior(Behavior otherBehavior, CharacterData otherData)
     {
-        if (other_behavior == Behavior.Controllable)
+        if (otherBehavior == Behavior.Controllable)
         {
-            InitControllable(other_data);
+            InitControllable(otherData);
         }
-        if (other_behavior == Behavior.Moving)
+        if (otherBehavior == Behavior.Moving)
         {
-            InitMoving(other_data);
+            InitMoving(otherData);
         }
-        if (other_behavior == Behavior.Still)
+        if (otherBehavior == Behavior.Still)
         {
-            InitStill(other_data);
+            InitStill(otherData);
         }
-        behavior = other_behavior;
+        behavior = otherBehavior;
     }
 
-    public void InitControllable(CharacterData other_data)
-    {
-
-    }
-
-    public void InitMoving(CharacterData other_data)
+    public void InitControllable(CharacterData otherData)
     {
 
     }
 
-    public void InitStill(CharacterData other_data)
+    public void InitMoving(CharacterData otherData)
+    {
+
+    }
+
+    public void InitStill(CharacterData otherData)
     {
 
     }

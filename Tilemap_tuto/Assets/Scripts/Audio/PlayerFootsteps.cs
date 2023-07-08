@@ -14,7 +14,7 @@ public class PlayerFootsteps : MonoBehaviour
 
     private void Start()
     {
-        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps)
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
     }
 
     private void UpdateSound()

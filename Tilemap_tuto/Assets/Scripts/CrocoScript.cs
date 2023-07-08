@@ -11,33 +11,45 @@ public class Croco : Character
        behavior = Behavior.Controllable; 
     }
 
-    public override void InitControllable(CharacterData otherData)
+    public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
 
     }
 
-    public override void InitAutoMoving(CharacterData otherData)
+    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
 
     }
 
-    public override void InitStill(CharacterData otherData)
+    public override void ChangeBehaviorToStill(CharacterState otherData)
     {
 
     }
 
-    public override void UpdateControllable()
+    public override void FixedUpdateControllable()
     {
         rbody.angularVelocity = 50;
     }
 
-    public override void UpdateAutoMoving()
+    public override void FixedUpdateAutoMoving()
     {
 
     }
 
-    public override void UpdateStill()
+    public override void FixedUpdateStill()
     {
 
+    }
+
+    public override void freezeCharacter()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log("I AM FROZEN!!!");
+    }
+
+    public override void unfreezeCharacter()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log("I AM LIBREEEEEEEEEE!!!");
     }
 }

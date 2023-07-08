@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Behavior {Controllable, AutoMoving, Still};
 
-public class CharacterData
+public class CharacterState
 {
 
 }
@@ -15,9 +15,9 @@ public class CharacterData
 public abstract class Character : MonoBehaviour
 {
     public Behavior behavior;
-    public bool isFrozen = false;
-    public CharacterData previousState;
-    public CharacterData currentState;
+    public bool isFrozen;
+    public CharacterState previousState;
+    public CharacterState currentState;
 
     // Start is called before the first frame update
     public abstract void Start();
@@ -27,13 +27,13 @@ public abstract class Character : MonoBehaviour
     {
         switch (behavior){
             case Behavior.Controllable:
-                UpdateControllable();
+                FixedUpdateControllable();
                 break;
             case Behavior.AutoMoving:
-                UpdateAutoMoving();
+                FixedUpdateAutoMoving();
                 break;
             case Behavior.Still:
-                UpdateStill();
+                FixedUpdateStill();
                 break;
             default:
                 break;
@@ -41,33 +41,42 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    void ChangeBehavior(Behavior otherBehavior, CharacterData otherData)
+    public void ChangeBehavior(Behavior otherBehavior, CharacterState otherState)
     {
-        switch (behavior){
+        switch (otherBehavior){
             case Behavior.Controllable:
-                InitControllable(otherData);
+                ChangeBehaviorToControllable(otherState);
                 break;
             case Behavior.AutoMoving:
-                InitAutoMoving(otherData);
+                ChangeBehaviorToAutoMoving(otherState);
                 break;
             case Behavior.Still:
-                InitStill(otherData);
+                ChangeBehaviorToStill(otherState);
                 break;
             default:
                 break;
 
         }
+        behavior = otherBehavior;
+        previousState = currentState;
+
+        // TODO: update state, maybe it's a copy?
+        // currentState = otherState;
     }
 
-    public abstract void InitControllable(CharacterData otherData);
+    public abstract void ChangeBehaviorToControllable(CharacterState otherState);
 
-    public abstract void InitAutoMoving(CharacterData otherData);
+    public abstract void ChangeBehaviorToAutoMoving(CharacterState otherState);
 
-    public abstract void InitStill(CharacterData otherData);
+    public abstract void ChangeBehaviorToStill(CharacterState otherState);
 
-    public abstract void UpdateControllable();
+    public abstract void FixedUpdateControllable();
 
-    public abstract void UpdateAutoMoving();
+    public abstract void FixedUpdateAutoMoving();
 
-    public abstract void UpdateStill();
+    public abstract void FixedUpdateStill();
+
+    public abstract void freezeCharacter();
+
+    public abstract void unfreezeCharacter();
 }

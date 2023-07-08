@@ -21,6 +21,7 @@ public class PepitoScript : Character
     private Vector3 velocity = Vector3.zero;
     public Vector2 move;
 
+    public bool printDebug;
 
     [SerializeField]
     private InputActionReference movement, jump;
@@ -29,24 +30,35 @@ public class PepitoScript : Character
     public override void Start()
     {
        behavior = Behavior.Controllable; 
+       printDebug = true;
     }
 
-    public override void InitControllable(CharacterData otherData)
+    public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
+        if (printDebug) {
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW CONTROLLABLE!!!");
+        }
 
     }
 
-    public override void InitAutoMoving(CharacterData otherData)
+    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
-
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW AUTO-MOVING!!!");
+        }
     }
 
-    public override void InitStill(CharacterData otherData)
+    public override void ChangeBehaviorToStill(CharacterState otherData)
     {
-
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW STILL!!!");
+        }
     }
 
-    public override void UpdateControllable()
+    public override void FixedUpdateControllable()
     {
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
@@ -89,13 +101,25 @@ public class PepitoScript : Character
         }
     }
 
-    public override void UpdateAutoMoving()
+    public override void FixedUpdateAutoMoving()
     {
 
     }
 
-    public override void UpdateStill()
+    public override void FixedUpdateStill()
     {
 
+    }
+
+    public override void freezeCharacter()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log("I AM FROZEN!!!");
+    }
+
+    public override void unfreezeCharacter()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log("I AM LIBREEEEEEEEEE!!!");
     }
 }

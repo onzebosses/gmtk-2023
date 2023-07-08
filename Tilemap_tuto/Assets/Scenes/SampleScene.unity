@@ -5774,18 +5774,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ambience>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1629932081
+      Data2: 1133229195
+      Data3: -1982779463
+      Data4: -125509454
+    Path: event:/Ambience 1
   <music>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1161893320
+      Data2: 1147360606
+      Data3: -2001152109
+      Data4: -1335140749
+    Path: event:/Music1
   <playerFootsteps>k__BackingField:
     Guid:
       Data1: -1042284549
@@ -5793,20 +5793,6 @@ MonoBehaviour:
       Data3: -1259645249
       Data4: -1648390755
     Path: event:/PlayerFootsteps
-  <coinCollected>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <coinIdle>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &1619418503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,7 +5903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterVolume: 1
   musicVolume: 1
-  ambienceVolume: 1
+  ambienceVolume: 0.315
   SFXVolume: 1
 --- !u!1 &1925831833
 GameObject:

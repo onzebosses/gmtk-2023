@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Behavior {Controllable, Moving, Still};
+public enum Behavior {Controllable, AutoMoving, Still};
 
 public class CharacterData
 {
@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
         {
             UpdateControllable();
         }
-        if (behavior == Behavior.Moving)
+        if (behavior == Behavior.AutoMoving)
         {
             UpdateMoving();
         }
@@ -48,7 +48,7 @@ public class Character : MonoBehaviour
         {
             InitControllable(otherData);
         }
-        if (otherBehavior == Behavior.Moving)
+        if (otherBehavior == Behavior.AutoMoving)
         {
             InitMoving(otherData);
         }

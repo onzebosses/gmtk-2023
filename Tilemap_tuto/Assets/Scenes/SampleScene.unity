@@ -1058,6 +1058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behavior: 0
   isFrozen: 0
+  isSwappable: 0
   moveSpeed: 300
   jumpForce: 600
   groundCheckLeft: {fileID: 291376645}
@@ -5522,6 +5523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behavior: 2
   isFrozen: 0
+  isSwappable: 0
   moveSpeed: 300
   jumpForce: 600
   groundCheckLeft: {fileID: 1356967600}

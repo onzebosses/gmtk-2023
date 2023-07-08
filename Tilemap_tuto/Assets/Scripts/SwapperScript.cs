@@ -17,7 +17,6 @@ public class BehaviorSwapper : MonoBehaviour
     private Character clickedCharacter;
 
     private GameObject[] allCharacterGameObjects;
-    private Character[] allCharacters;
     // Start is called before the first frame update
     void Start()
     {

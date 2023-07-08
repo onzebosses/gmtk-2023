@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Behavior {Controllable, AutoMoving, Still};
+public enum Behavior {Controllable, AutoMoving, Still, Bounce};
 
 public class CharacterState
 {
@@ -18,6 +18,7 @@ public abstract class Character : MonoBehaviour
     public bool isFrozen;
     public CharacterState previousState;
     public CharacterState currentState;
+    public bool isSwappable;
 
     // Start is called before the first frame update
     public abstract void Start();
@@ -34,6 +35,9 @@ public abstract class Character : MonoBehaviour
                 break;
             case Behavior.Still:
                 FixedUpdateStill();
+                break;
+            case Behavior.Bounce:
+                FixedUpdateBounce();
                 break;
             default:
                 break;
@@ -53,9 +57,11 @@ public abstract class Character : MonoBehaviour
             case Behavior.Still:
                 ChangeBehaviorToStill(otherState);
                 break;
+            case Behavior.Bounce:
+                ChangeBehaviorToBounce(otherState);
+                break;
             default:
                 break;
-
         }
         behavior = otherBehavior;
         previousState = currentState;
@@ -70,11 +76,15 @@ public abstract class Character : MonoBehaviour
 
     public abstract void ChangeBehaviorToStill(CharacterState otherState);
 
+    public abstract void ChangeBehaviorToBounce(CharacterState otherState);
+
     public abstract void FixedUpdateControllable();
 
     public abstract void FixedUpdateAutoMoving();
 
     public abstract void FixedUpdateStill();
+
+    public abstract void FixedUpdateBounce();
 
     public abstract void freezeCharacter();
 

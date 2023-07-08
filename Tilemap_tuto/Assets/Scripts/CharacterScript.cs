@@ -23,7 +23,7 @@ public abstract class Character : MonoBehaviour
     public abstract void Start();
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         switch (behavior){
             case Behavior.Controllable:

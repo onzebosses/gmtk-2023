@@ -6,6 +6,7 @@ public class SwapperScript : MonoBehaviour
 {
     public enum SwapperStatus {Off, OnZeroClicked, OnOneClicked};
     public SwapperStatus status = SwapperStatus.Off;
+    public InputHandler mouseClickHandler;
     private bool rightClicked = false;
     private bool leftClicked = false;
 
@@ -14,7 +15,7 @@ public class SwapperScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mouseClickHandler = GameObject.FindGameObjectWithTag("MouseClickHandler").GetComponent<InputHandler>();
     }
 
     // Update is called once per frame

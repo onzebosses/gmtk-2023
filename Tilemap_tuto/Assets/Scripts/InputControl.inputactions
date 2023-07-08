@@ -22,24 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MousePosition",
-                    "type": "Value",
-                    "id": "c8b1c31b-b404-4cab-9cf9-09bce41f4fd9",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "PerformAction",
-                    "type": "Button",
-                    "id": "667dfcf0-69d3-4418-be8a-905c0ce3527e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -79,7 +61,7 @@
                 {
                     "name": "left",
                     "id": "badec301-0cbb-4b62-87ec-572f3f94ef3c",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -108,10 +90,45 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MouseMovement",
+            "id": "0b8f43b0-aead-477d-ae54-9d7310b57fb2",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "486fa36e-c3ed-4964-940d-d3f688805bb4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "485a2a80-4c71-4e2d-9065-e06021d6f30e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "d4bcec40-4f67-407f-9901-c20c36a99fc6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "2b998674-58a2-4d7e-8172-835a5eb77419",
+                    "id": "29824c24-076a-41ba-85e2-ec50a3cbc83d",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -122,12 +139,23 @@
                 },
                 {
                     "name": "",
-                    "id": "4e3052e7-25a5-40f8-bc57-a68f1d51418b",
+                    "id": "39f08e95-e973-4308-94f5-5235bddc2119",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PerformAction",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93ba863b-92a9-4033-8672-4641bbc1a4ea",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

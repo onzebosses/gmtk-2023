@@ -98,15 +98,6 @@
             "id": "0b8f43b0-aead-477d-ae54-9d7310b57fb2",
             "actions": [
                 {
-                    "name": "MousePosition",
-                    "type": "Value",
-                    "id": "486fa36e-c3ed-4964-940d-d3f688805bb4",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "LeftClick",
                     "type": "Button",
                     "id": "485a2a80-4c71-4e2d-9065-e06021d6f30e",
@@ -126,17 +117,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "29824c24-076a-41ba-85e2-ec50a3cbc83d",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "39f08e95-e973-4308-94f5-5235bddc2119",

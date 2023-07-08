@@ -23,10 +23,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private InputActionReference movement, jump;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-    }
 
     void FixedUpdate()
        {

@@ -6,9 +6,7 @@ using FMOD.Studio;
 
 public class PlayerFootsteps : MonoBehaviour
 {
-    public bool isMoving;
-
-    public bool isGrounded;
+    public PlayerMovement player;
 
     private EventInstance playerFootsteps;
 
@@ -17,9 +15,9 @@ public class PlayerFootsteps : MonoBehaviour
         playerFootsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.playerFootsteps);
     }
 
-    private void UpdateSound()
+    private void Update()
     {
-        if (isMoving && isGrounded)
+        if (player.isMoving && player.isGrounded)
         {
             PLAYBACK_STATE playbackState;
             playerFootsteps.getPlaybackState(out playbackState);

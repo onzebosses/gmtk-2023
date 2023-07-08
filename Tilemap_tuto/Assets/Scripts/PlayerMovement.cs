@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
 
+    public bool isMoving;
+    public bool isGrounded;
     private bool isJumping;
-    private bool isGrounded;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -23,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private InputActionReference movement, jump;
 
+    private void Start()
+    {
+        isMoving = true;
+        // Cursor.lockState = CursorLockMode.Confined;
+    }
 
     void FixedUpdate()
        {

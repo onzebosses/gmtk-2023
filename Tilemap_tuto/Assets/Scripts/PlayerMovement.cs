@@ -25,14 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private InputActionReference movement, jump;
 
-<<<<<<< Updated upstream
-=======
     private void Start()
     {
         isMoving = true;
         // Cursor.lockState = CursorLockMode.Confined;
     }
->>>>>>> Stashed changes
 
     void FixedUpdate()
        {

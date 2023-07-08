@@ -76,6 +76,7 @@ public class SwapperScript : MonoBehaviour
     public Character getCharacterUnderCursor()
     {
         // TODO: return a character
+        return character1;
     }
 
     public void swapBehaviors()

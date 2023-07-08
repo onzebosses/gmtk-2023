@@ -12,18 +12,15 @@ public class CharacterData
 
 // Character = lines of table
 // Behavior = column of table
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     public Behavior behavior;
-    public bool isFrozen;
+    public bool isFrozen = false;
     public CharacterData previousState;
     public CharacterData currentState;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract void Start();
 
     // Update is called once per frame
     void Update()
@@ -62,33 +59,15 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void InitControllable(CharacterData otherData)
-    {
+    public abstract void InitControllable(CharacterData otherData);
 
-    }
+    public abstract void InitAutoMoving(CharacterData otherData);
 
-    public void InitAutoMoving(CharacterData otherData)
-    {
+    public abstract void InitStill(CharacterData otherData);
 
-    }
+    public abstract void UpdateControllable();
 
-    public void InitStill(CharacterData otherData)
-    {
+    public abstract void UpdateAutoMoving();
 
-    }
-
-    public void UpdateControllable()
-    {
-
-    }
-
-    public void UpdateAutoMoving()
-    {
-
-    }
-
-    public void UpdateStill()
-    {
-
-    }
+    public abstract void UpdateStill();
 }

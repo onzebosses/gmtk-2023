@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class Croco : Character
 {
+    public Rigidbody2D rbody;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+       behavior = Behavior.Controllable; 
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InitControllable(CharacterData otherData)
     {
-        
+
+    }
+
+    public override void InitAutoMoving(CharacterData otherData)
+    {
+
+    }
+
+    public override void InitStill(CharacterData otherData)
+    {
+
+    }
+
+    public override void UpdateControllable()
+    {
+        rbody.angularVelocity = 50;
+    }
+
+    public override void UpdateAutoMoving()
+    {
+
+    }
+
+    public override void UpdateStill()
+    {
+
     }
 }

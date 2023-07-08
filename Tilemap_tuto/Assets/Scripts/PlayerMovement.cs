@@ -17,15 +17,23 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
-    private Vector2 move;
+    public Vector2 move;
+
 
     [SerializeField]
-    private InputActionReference movement, shoot, jump, pointerposition;
+    private InputActionReference movement, jump;
 
-    void Update()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    void FixedUpdate()
        {
+        
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
+
         float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
 
            if (jump.action.IsPressed() && isGrounded)
@@ -39,7 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
            float characterVelocity = Mathf.Abs(rb.velocity.x);
            animator.SetFloat("Speed", characterVelocity);
-       }
+
+    }
 
     void MovePlayer(float _horizontalMovement)
        {
@@ -63,5 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+
 } 
 

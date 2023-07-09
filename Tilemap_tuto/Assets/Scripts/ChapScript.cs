@@ -74,6 +74,9 @@ public class ChapScript : Character
 
         // float horizontalMovement = 0;
         float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
+        if (defaultDirection == Direction.Vertical)
+            horizontalMovement *= -getAlphaRotation();
+
         // if (defaultDirection == Direction.Horizontal)
         // else
         //     horizontalMovement = move.y * defaultControllableVelocity * Time.deltaTime;

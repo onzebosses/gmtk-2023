@@ -46,6 +46,8 @@ public class PlatformScript : Character
         move = movement.action.ReadValue<Vector2>();
 
         float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
+        if (defaultDirection == Direction.Vertical)
+            horizontalMovement *= -getAlphaRotation();
 
         // TODO: impulse
         // if (jump.action.IsPressed() && false)

@@ -572,6 +572,37 @@ Transform:
   m_Father: {fileID: 1066968580}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &263316434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 263316435}
+  m_Layer: 0
+  m_Name: BottomHitBoxWhenElongated
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &263316435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263316434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.03, y: 1.247, z: 0}
+  m_LocalScale: {x: 0.9876543, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1066968580}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &291376644
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +915,6 @@ GameObject:
   - component: {fileID: 684623620}
   - component: {fileID: 684623619}
   - component: {fileID: 684623618}
-  - component: {fileID: 684623617}
   - component: {fileID: 684623616}
   - component: {fileID: 684623615}
   m_Layer: 0
@@ -967,41 +997,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &684623617
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684623614}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007923365, y: -0.32169294}
-  serializedVersion: 2
-  m_Radius: 0.16315663
 --- !u!61 &684623618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1317,7 +1312,6 @@ GameObject:
   - component: {fileID: 862958326}
   - component: {fileID: 862958324}
   - component: {fileID: 862958323}
-  - component: {fileID: 862958322}
   - component: {fileID: 862958321}
   - component: {fileID: 862958328}
   m_Layer: 0
@@ -1348,41 +1342,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &862958322
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862958320}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007923365, y: -0.32169294}
-  serializedVersion: 2
-  m_Radius: 0.16315663
 --- !u!61 &862958323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6055,7 +6014,6 @@ GameObject:
   - component: {fileID: 1066968579}
   - component: {fileID: 1066968578}
   - component: {fileID: 1066968577}
-  - component: {fileID: 1066968576}
   - component: {fileID: 1066968575}
   - component: {fileID: 1066968574}
   m_Layer: 0
@@ -6138,41 +6096,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &1066968576
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066968573}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007923365, y: -0.32169294}
-  serializedVersion: 2
-  m_Radius: 0.16315663
 --- !u!61 &1066968577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6279,6 +6202,13 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1066968574}
   move: {x: 0, y: 0}
   sign: 0
+  transformBottomHitBoxWhenElongated: {fileID: 263316435}
+  rateElongationOffsetHitbox: 0.1
+  deltaOffsetHitbox: 0
+  maxOffsetHitbox: 0
+  defaultOffsetHitbox: 0
+  otherDefaultOffsetHitbox: 0
+  proxyCollider: {fileID: 1066968577}
   printDebug: 0
 --- !u!4 &1066968580
 Transform:
@@ -6288,7 +6218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066968573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.65, y: 1.53, z: 0}
+  m_LocalPosition: {x: -9.25, y: 0.399, z: 0}
   m_LocalScale: {x: 1.0125, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6296,6 +6226,7 @@ Transform:
   - {fileID: 1673346439}
   - {fileID: 627731596}
   - {fileID: 1976091316}
+  - {fileID: 263316435}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7647,7 +7578,6 @@ GameObject:
   - component: {fileID: 1997766285}
   - component: {fileID: 1997766284}
   - component: {fileID: 1997766283}
-  - component: {fileID: 1997766282}
   - component: {fileID: 1997766281}
   - component: {fileID: 1997766280}
   m_Layer: 0
@@ -7730,41 +7660,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &1997766282
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997766279}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007923365, y: -0.32169294}
-  serializedVersion: 2
-  m_Radius: 0.16315663
 --- !u!61 &1997766283
 BoxCollider2D:
   m_ObjectHideFlags: 0

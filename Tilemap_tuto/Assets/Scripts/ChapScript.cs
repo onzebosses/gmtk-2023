@@ -18,12 +18,37 @@ public class ChapScript : Character
     public Vector2 move;
     public float sign;
 
+    // SIZE AUGMENTATION
+    public Transform transformBottomHitBoxWhenElongated;
+    public float rateElongationOffsetHitbox;
+    public float deltaOffsetHitbox;
+    private bool isElongating;
+    public float maxOffsetHitbox;
+    public float defaultOffsetHitbox;
+    public float otherDefaultOffsetHitbox;
+
+    public BoxCollider2D proxyCollider;
     public bool printDebug;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+
+        deltaOffsetHitbox = 0;
+        if (defaultDirection == Direction.Horizontal)
+        {
+            defaultOffsetHitbox = proxyCollider.offset.y;
+            Debug.Log(transformBottomHitBoxWhenElongated.position.y - transform.position.y);
+            maxOffsetHitbox = (transformBottomHitBoxWhenElongated.position.y - transform.position.y) - defaultOffsetHitbox;
+            otherDefaultOffsetHitbox = proxyCollider.offset.x;
+        }
+        if (defaultDirection == Direction.Vertical)
+        {
+            defaultOffsetHitbox = proxyCollider.offset.x;
+            maxOffsetHitbox = (transformBottomHitBoxWhenElongated.position.x - transform.position.x) - defaultOffsetHitbox;
+            otherDefaultOffsetHitbox = proxyCollider.offset.y;
+        }
 
         printDebug = true;
     }
@@ -32,11 +57,13 @@ public class ChapScript : Character
     {
         rbody.bodyType = RigidbodyType2D.Kinematic;
         rbody.velocity = Vector2.zero;
+        isElongating = false;
+        deltaOffsetHitbox = 0;
+
         if (printDebug) {
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW CONTROLLABLE!!!");
         }
-
     }
 
     public override void FixedUpdateControllable()
@@ -46,10 +73,30 @@ public class ChapScript : Character
 
         float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
 
-        if (jump.action.IsPressed() && isGrounded)
-        {
-            isJumping = true;
+        if (jump.action.IsPressed()) {
+            if (!isElongating) {
+                isElongating = true;
+            }
+            if (deltaOffsetHitbox < maxOffsetHitbox)
+            {
+               deltaOffsetHitbox += rateElongationOffsetHitbox;
+            }
+        } else {
+            if (deltaOffsetHitbox > 0)
+            {
+                deltaOffsetHitbox -= rateElongationOffsetHitbox;
+            }
         }
+        if (deltaOffsetHitbox < 0)
+        {
+            deltaOffsetHitbox = 0;
+        }
+        if (deltaOffsetHitbox > maxOffsetHitbox)
+        {
+            deltaOffsetHitbox = maxOffsetHitbox;
+        }
+
+        updateColliderWithOffset();
 
         MovePlayer(horizontalMovement);
 
@@ -58,12 +105,20 @@ public class ChapScript : Character
         float characterVelocity = Mathf.Abs(rbody.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
 
-        if (transform.position.x <= minBoundary && rbody.velocity.x < 0)
+        if ((transform.position.x <= minBoundary && rbody.velocity.x < 0) || jump.action.IsPressed())
         {
             rbody.velocity = Vector2.zero;
         }
-        if (transform.position.x >= maxBoundary && rbody.velocity.x > 0)
+        if ((transform.position.x >= maxBoundary && rbody.velocity.x > 0) || jump.action.IsPressed())
             rbody.velocity = Vector2.zero;
+    }
+
+    private void updateColliderWithOffset()
+    {
+        if (defaultDirection == Direction.Horizontal)
+            proxyCollider.offset = new Vector2(otherDefaultOffsetHitbox, defaultOffsetHitbox + deltaOffsetHitbox);
+        if (defaultDirection == Direction.Vertical)
+            proxyCollider.offset = new Vector2(defaultOffsetHitbox + deltaOffsetHitbox, otherDefaultOffsetHitbox);
     }
 
     void MovePlayer(float _horizontalMovement)

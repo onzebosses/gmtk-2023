@@ -464,7 +464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -874}
+  m_AnchoredPosition: {x: 0, y: -919}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &517208814
@@ -599,7 +599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -555}
+  m_AnchoredPosition: {x: 0, y: -667}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539628268
@@ -734,7 +734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -654}
+  m_AnchoredPosition: {x: 0, y: -1094}
   m_SizeDelta: {x: 725.1, y: -94.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &565156011
@@ -869,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -941}
+  m_AnchoredPosition: {x: 0, y: -1349}
   m_SizeDelta: {x: 725.1, y: -94.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075720504
@@ -1004,7 +1004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1014}
+  m_AnchoredPosition: {x: 0, y: -1422}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163099888
@@ -1141,7 +1141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -214}
+  m_AnchoredPosition: {x: 0, y: -190}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1249720835
@@ -1276,7 +1276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -368}
+  m_AnchoredPosition: {x: 0, y: -423}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579399076
@@ -1411,7 +1411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -484}
+  m_AnchoredPosition: {x: 0, y: -598}
   m_SizeDelta: {x: 725.1, y: -94.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678452580
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The vibbin' musicians
+  m_text: The vibin' musicians
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad4e5e9eb8c059d428aece9717579c51, type: 2}
   m_sharedMaterial: {fileID: 7827846264900690213, guid: ad4e5e9eb8c059d428aece9717579c51, type: 2}
@@ -1546,7 +1546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -727}
+  m_AnchoredPosition: {x: 0, y: -1167.0002}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743394971
@@ -1683,10 +1683,10 @@ RectTransform:
   - {fileID: 1579399075}
   - {fileID: 1678452579}
   - {fileID: 539628267}
-  - {fileID: 565156010}
-  - {fileID: 1743394970}
   - {fileID: 2080840794}
   - {fileID: 517208813}
+  - {fileID: 565156010}
+  - {fileID: 1743394970}
   - {fileID: 1075720503}
   - {fileID: 1163099887}
   m_Father: {fileID: 1905876599}
@@ -1869,7 +1869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -299}
+  m_AnchoredPosition: {x: 0, y: -352}
   m_SizeDelta: {x: 725.1, y: -94.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915202126
@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: 2080840796}
   - component: {fileID: 2080840795}
   m_Layer: 5
-  m_Name: El musician integrator designer
+  m_Name: THE MUSIC INTEGRATOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,7 +2277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -801}
+  m_AnchoredPosition: {x: 0, y: -843}
   m_SizeDelta: {x: 725.1, y: -94.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2080840795
@@ -2300,7 +2300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: El musician integrator designer
+  m_text: The music lover integrator
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad4e5e9eb8c059d428aece9717579c51, type: 2}
   m_sharedMaterial: {fileID: 7827846264900690213, guid: ad4e5e9eb8c059d428aece9717579c51, type: 2}

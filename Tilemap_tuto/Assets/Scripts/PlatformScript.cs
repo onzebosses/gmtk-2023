@@ -131,9 +131,17 @@ public class PlatformScript : Character
     {
         float pos;
         if (defaultDirection == Direction.Horizontal)
+        {
+            animator.SetBool("IsDirectionX", true);
+            animator.SetBool("IsDirectionY", false);
             pos = transform.position.x;
+        }
         else
+        {
+            animator.SetBool("IsDirectionX", false);
+            animator.SetBool("IsDirectionY", true);
             pos = transform.position.y;
+        }
         if (pos <= minBoundary || pos >= maxBoundary)
         {
             rbody.velocity *= -1;

@@ -15,6 +15,7 @@ public class BehaviorSwapper : MonoBehaviour
 
     private GameObject clickedGameObject;
     private Character clickedCharacter;
+    public float defaultCharactersRadius;
 
     private GameObject[] allCharacterGameObjects;
     // Start is called before the first frame update
@@ -86,7 +87,7 @@ public class BehaviorSwapper : MonoBehaviour
             return;
 
         clickedCharacter = clickedGameObject.GetComponent<Character>();
-        if (clickedCharacter == null)
+        if (clickedCharacter == null || !clickedCharacter.isSwappable)
             return;
 
         switch(status)
@@ -95,10 +96,19 @@ public class BehaviorSwapper : MonoBehaviour
                 break;
             case SwapperStatus.OnZeroClicked:
                 character1 = clickedCharacter;
+                // TODO: show radius around character 1
+                // TODO: animation cursor 1
                 status = SwapperStatus.OnOneClicked;
                 break;
             case SwapperStatus.OnOneClicked:
                 character2 = clickedCharacter;
+                float dist = Vector2.SqrMagnitude(character1.gameObject.transform.position - character2.gameObject.transform.position);
+                // TODO: animation cursor 2
+                if (dist > defaultCharactersRadius)
+                {
+                    character2 = null;
+                    break;
+                }
                 swapBehaviors();
                 status = SwapperStatus.Off;
                 // QUESTION: does the swap happens immediatly?

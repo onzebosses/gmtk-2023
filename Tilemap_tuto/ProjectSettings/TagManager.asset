@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BehaviorSwapper
   - Character
+  - Plateform
   layers:
   - Default
   - TransparentFX

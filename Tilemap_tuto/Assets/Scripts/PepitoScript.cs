@@ -39,6 +39,26 @@ public class PepitoScript : Character
         }
     }
 
+    private Vector2 getGroundVelocity()
+    {
+        Vector2 res = Vector2.zero;
+        if (!isGrounded)
+            return res;
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(groundCheckLeft.position, groundCheckRight.position);
+        foreach(Collider2D col in colliders)
+        {
+            if (col.gameObject.CompareTag("Character"))
+            {
+                if(col.gameObject.GetComponent<PlatformScript>() != null)
+                {
+                    if(col.gameObject.GetComponent<PlatformScript>().rbody.bodyType != RigidbodyType2D.Static)
+                        res += col.gameObject.GetComponent<PlatformScript>().rbody.velocity; 
+                }
+            }
+        }
+        return res;
+    }
+
     public override void FixedUpdateControllable()
     {
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
@@ -57,6 +77,10 @@ public class PepitoScript : Character
 
         float characterVelocity = Mathf.Abs(rbody.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
+
+        Vector2 groundVel = getGroundVelocity();
+        // rbody.velocity += groundVel;
+        transform.position += new Vector3(groundVel.x * Time.deltaTime, groundVel.y * Time.deltaTime, 0);
     }
 
     void MovePlayer(float _horizontalMovement)
@@ -117,6 +141,9 @@ public class PepitoScript : Character
             rbody.velocity *= -1;
             invertCachedSens();
         }
+        Vector2 groundVel = getGroundVelocity();
+        // rbody.velocity += groundVel;
+        transform.position += new Vector3(groundVel.x * Time.deltaTime, groundVel.y * Time.deltaTime, 0);
     }
 
     public override void ChangeBehaviorToStill(CharacterState otherData)
@@ -139,6 +166,8 @@ public class PepitoScript : Character
             isAirborneAndStill = false;
             rbody.bodyType = RigidbodyType2D.Static;
         }
+        Vector2 groundVel = getGroundVelocity();
+        transform.position += new Vector3(groundVel.x * Time.deltaTime, groundVel.y * Time.deltaTime, 0);
     }
 
     public override void ChangeBehaviorToBounce(CharacterState otherData)
@@ -151,7 +180,8 @@ public class PepitoScript : Character
 
     public override void FixedUpdateBounce()
     {
-
+        Vector2 groundVel = getGroundVelocity();
+        rbody.velocity += groundVel;
     }
 
     // public override void freezeCharacter()

@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseKey.action.Enable();
         isPaused = false;
         pauseMenu.SetActive(isPaused);
         //runMouse.SetActive(true);
@@ -84,6 +85,13 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         isPaused = false;
         //runMouse.SetActive(true);
+    }
+
+    public void mainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+        isPaused = false;
     }
     public void QuitGame()
     {

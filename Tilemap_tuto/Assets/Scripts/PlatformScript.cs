@@ -31,6 +31,9 @@ public class PlatformScript : Character
 
     public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", true);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", false);
         rbody.bodyType = RigidbodyType2D.Kinematic;
         rbody.velocity = Vector2.zero;
 
@@ -112,6 +115,9 @@ public class PlatformScript : Character
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", true);
+        animator.SetBool("IsStill", false);
         rbody.bodyType = RigidbodyType2D.Kinematic;
         SetVelocity(defaultAutoMoveVelocity);
 
@@ -137,6 +143,9 @@ public class PlatformScript : Character
 
     public override void ChangeBehaviorToStill(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", true);
         rbody.bodyType = RigidbodyType2D.Static;
 
         if (printDebug){

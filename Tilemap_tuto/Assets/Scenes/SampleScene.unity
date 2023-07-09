@@ -1086,8 +1086,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2983f94be14cb44569b9df4ecfc1dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behavior: 0
-  moveSpeed: 300
+  behavior: 2
+  defaultControllableVelocity: 300
+  defaultAutoMoveVelocity: 1
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -1467,7 +1468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: 0
-  moveSpeed: 300
+  defaultControllableVelocity: 1
+  defaultAutoMoveVelocity: 1
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -5972,7 +5974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: 2
-  moveSpeed: 300
+  defaultControllableVelocity: 0
+  defaultAutoMoveVelocity: 0
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -6255,7 +6258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: 1
-  moveSpeed: 1
+  defaultControllableVelocity: 300
+  defaultAutoMoveVelocity: 1
   jumpForce: 0
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -6274,6 +6278,7 @@ MonoBehaviour:
   animator: {fileID: 1066968575}
   spriteRenderer: {fileID: 1066968574}
   move: {x: 0, y: 0}
+  sign: 0
   printDebug: 0
 --- !u!4 &1066968580
 Transform:
@@ -7844,8 +7849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9f0b9ef7a21443b933eb19c7f4b28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behavior: 0
-  moveSpeed: 300
+  behavior: 3
+  defaultControllableVelocity: 300
+  defaultAutoMoveVelocity: 1
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}

@@ -21,7 +21,8 @@ public abstract class Character : MonoBehaviour
     public CharacterState currentState;
     public CharacterState previousState;
 
-    public float moveSpeed;
+    public float defaultControllableVelocity;
+    public float defaultAutoMoveVelocity;
     public float jumpForce;
 
     [SerializeField]
@@ -37,6 +38,9 @@ public abstract class Character : MonoBehaviour
     public float minBoundary;
     public float maxBoundary;
     public Direction defaultDirection;
+    private float cachedSens;
+    public void invertCachedSens() { cachedSens *= -1; }
+    public float getCachedSens() { return cachedSens;}
 
     // PHYSICS
     public Rigidbody2D rbody;
@@ -46,7 +50,10 @@ public abstract class Character : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        cachedSens = 1;
         getMinMaxBoundaries();
+        CharacterState dummyState = new CharacterState();
+        ChangeBehavior(behavior, dummyState);
     }
 
     // TODO: make sure we call that when we switch to auto-move
@@ -66,13 +73,22 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public void setDefaultVelocity(float sign)
+    public void SetVelocity(float vel)
     {
         if (defaultDirection == Direction.Horizontal)
-            rbody.velocity = new Vector2(sign * moveSpeed, 0);
+            rbody.velocity = new Vector2(cachedSens * vel, 0);
         if (defaultDirection == Direction.Vertical)
-            rbody.velocity = new Vector2(0, sign * moveSpeed);
+            rbody.velocity = new Vector2(0, cachedSens * vel);
     }
+
+    //
+    // public void setAutoMoveDefaultVelocity()
+    // {
+    //     if (defaultDirection == Direction.Horizontal)
+    //         rbody.velocity = new Vector2(cachedSens * defaultAutoMoveVelocity, 0);
+    //     if (defaultDirection == Direction.Vertical)
+    //         rbody.velocity = new Vector2(0, cachedSens * defaultAutoMoveVelocity);
+    // }
 
     // Update is called once per frame
     void FixedUpdate()

@@ -26,8 +26,6 @@ public class PlatformScript : Character
     public override void Start()
     {
         base.Start();
-        rbody.bodyType = RigidbodyType2D.Static;
-        behavior = Behavior.Still; 
         printDebug = true;
     }
 
@@ -35,7 +33,6 @@ public class PlatformScript : Character
     {
         rbody.bodyType = RigidbodyType2D.Kinematic;
         rbody.velocity = Vector2.zero;
-        getMinMaxBoundaries();
 
         if (printDebug) {
             Debug.Log(gameObject.name);
@@ -48,19 +45,19 @@ public class PlatformScript : Character
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
-        float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
+        float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
 
         // TODO: impulse
-        if (jump.action.IsPressed() && false)
-        {
-            impulsionBeingApplied = true;
-            rbody.bodyType = RigidbodyType2D.Dynamic;
-            float sign = -1;
-            // TODO: What if velocity is 0?
-            if (velocity.x > 0)
-                sign = 1;
-            rbody.AddForce(sign * (new Vector2(impulsionStrength, 0)), ForceMode2D.Impulse);
-        }
+        // if (jump.action.IsPressed() && false)
+        // {
+        //     impulsionBeingApplied = true;
+        //     rbody.bodyType = RigidbodyType2D.Dynamic;
+        //     float sign = -1;
+        //     // TODO: What if velocity is 0?
+        //     if (velocity.x > 0)
+        //         sign = 1;
+        //     rbody.AddForce(sign * (new Vector2(impulsionStrength, 0)), ForceMode2D.Impulse);
+        // }
 
         // TODO: dampen the impulsion
         if (impulsionBeingApplied && false)
@@ -109,6 +106,8 @@ public class PlatformScript : Character
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
         rbody.bodyType = RigidbodyType2D.Kinematic;
+        SetVelocity(defaultAutoMoveVelocity);
+
         if (printDebug){
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW AUTO-MOVING!!!");
@@ -117,12 +116,15 @@ public class PlatformScript : Character
 
     public override void FixedUpdateAutoMoving()
     {
-
+        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        {
+            rbody.velocity *= -1;
+            invertCachedSens();
+        }
     }
 
     public override void ChangeBehaviorToStill(CharacterState otherData)
     {
-        // currentState.previousVel = rbody.velocity;
         rbody.bodyType = RigidbodyType2D.Static;
 
         if (printDebug){

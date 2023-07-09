@@ -24,10 +24,6 @@ public class ChapScript : Character
     public override void Start()
     {
         base.Start();
-        CharacterState dummyState = new CharacterState();
-        sign = 1;
-        ChangeBehaviorToAutoMoving(dummyState);
-        getMinMaxBoundaries();
 
         printDebug = true;
     }
@@ -35,6 +31,7 @@ public class ChapScript : Character
     public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
         rbody.bodyType = RigidbodyType2D.Kinematic;
+        rbody.velocity = Vector2.zero;
         if (printDebug) {
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW CONTROLLABLE!!!");
@@ -47,7 +44,7 @@ public class ChapScript : Character
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
-        float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
+        float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
 
         if (jump.action.IsPressed() && isGrounded)
         {
@@ -88,7 +85,7 @@ public class ChapScript : Character
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
         rbody.bodyType = RigidbodyType2D.Kinematic;
-        setDefaultVelocity(sign);
+        SetVelocity(defaultAutoMoveVelocity);
 
         if (printDebug){
             Debug.Log(gameObject.name);
@@ -101,7 +98,7 @@ public class ChapScript : Character
         if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
         {
             rbody.velocity *= -1;
-            sign *= -1;
+            invertCachedSens();
         }
     }
 

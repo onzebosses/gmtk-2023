@@ -24,8 +24,6 @@ public class PepitoScript : Character
     public override void Start()
     {
         base.Start();
-        rbody.bodyType = RigidbodyType2D.Dynamic;
-        behavior = Behavior.Controllable; 
         printDebug = true;
     }
 
@@ -45,7 +43,7 @@ public class PepitoScript : Character
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
-        float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
+        float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
 
         if (jump.action.IsPressed() && isGrounded)
         {
@@ -85,6 +83,9 @@ public class PepitoScript : Character
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
+        rbody.bodyType = RigidbodyType2D.Kinematic;
+        SetVelocity(defaultAutoMoveVelocity);
+        getMinMaxBoundaries();
         if (printDebug){
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW AUTO-MOVING!!!");
@@ -93,7 +94,11 @@ public class PepitoScript : Character
 
     public override void FixedUpdateAutoMoving()
     {
-
+        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        {
+            rbody.velocity *= -1;
+            invertCachedSens();
+        }
     }
 
     public override void ChangeBehaviorToStill(CharacterState otherData)

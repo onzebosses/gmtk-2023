@@ -72,7 +72,7 @@ public class SpringScript : Character
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
-        float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
+        float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
 
         if (jump.action.IsPressed() && isGrounded)
         {

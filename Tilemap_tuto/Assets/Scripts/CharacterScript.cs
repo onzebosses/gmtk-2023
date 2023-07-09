@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,8 @@ public abstract class Character : MonoBehaviour
 
     public bool isFrozen;
     public bool isSwappable;
+    private float alphaRotation;
+    public float getAlphaRotation() { return alphaRotation; }
 
     // RELATIVE TO MOVING BOUNDARIES
     // When switching to auto-move, these set the boundaries
@@ -51,9 +54,20 @@ public abstract class Character : MonoBehaviour
     public virtual void Start()
     {
         cachedSens = 1;
+        // Detect alpha with rotation
+        alphaRotation = 1;
+        if (transform.rotation.z > 0){
+            alphaRotation = -1;
+        }
+        defaultDirection = Direction.Horizontal;
+        if (transform.rotation.z != 0)
+        {
+            defaultDirection = Direction.Vertical;
+        }
         getMinMaxBoundaries();
         CharacterState dummyState = new CharacterState();
         ChangeBehavior(behavior, dummyState);
+
     }
 
     // TODO: make sure we call that when we switch to auto-move
@@ -65,8 +79,8 @@ public abstract class Character : MonoBehaviour
                 maxBoundary = maxBoundaryTransform.position.x;
                 break;
             case Direction.Vertical:
-                minBoundary = minBoundaryTransform.position.y;
-                maxBoundary = maxBoundaryTransform.position.y;
+                minBoundary = Math.Min(minBoundaryTransform.position.y, maxBoundaryTransform.position.y);
+                maxBoundary = Math.Max(minBoundaryTransform.position.y, maxBoundaryTransform.position.y);
                 break;
             default:
                 break;
@@ -93,22 +107,25 @@ public abstract class Character : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        switch (behavior){
-            case Behavior.Controllable:
-                FixedUpdateControllable();
-                break;
-            case Behavior.AutoMoving:
-                FixedUpdateAutoMoving();
-                break;
-            case Behavior.Still:
-                FixedUpdateStill();
-                break;
-            case Behavior.Bounce:
-                FixedUpdateBounce();
-                break;
-            default:
-                break;
+        if (!isFrozen)
+        {
+            switch (behavior){
+                case Behavior.Controllable:
+                    FixedUpdateControllable();
+                    break;
+                case Behavior.AutoMoving:
+                    FixedUpdateAutoMoving();
+                    break;
+                case Behavior.Still:
+                    FixedUpdateStill();
+                    break;
+                case Behavior.Bounce:
+                    FixedUpdateBounce();
+                    break;
+                default:
+                    break;
 
+            }
         }
     }
 
@@ -155,6 +172,7 @@ public abstract class Character : MonoBehaviour
 
     public void freezeCharacter() 
     {
+        isFrozen = true;
         if (rbody.bodyType != RigidbodyType2D.Static)
         {
             velBeforeFreeze = rbody.velocity;
@@ -173,5 +191,6 @@ public abstract class Character : MonoBehaviour
                 rbody.velocity = velBeforeFreeze;
             rbody.gravityScale = gravScaleBeforeFreeze;
         }
+        isFrozen = false;
     }
 }

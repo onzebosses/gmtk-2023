@@ -66,30 +66,35 @@ public class PlatformScript : Character
 
         MovePlayer(horizontalMovement);
 
-        // TODO
-        Flip(rbody.velocity.x);
+        float vel = rbody.velocity.x;
+        if (defaultDirection == Direction.Vertical)
+            vel = rbody.velocity.y;
+        Flip(vel);
 
-        float characterVelocity = Mathf.Abs(rbody.velocity.x);
+        float characterVelocity = Mathf.Abs(vel);
         animator.SetFloat("Speed", characterVelocity);
 
-        if (transform.position.x <= minBoundary && rbody.velocity.x < 0)
-        {
-            rbody.velocity = Vector2.zero;
+        float pos = transform.position.x;
+        float vel_ = rbody.velocity.x;
+        if (defaultDirection == Direction.Vertical) {
+            pos = transform.position.y;
+            vel_ = rbody.velocity.y;
         }
-        if (transform.position.x >= maxBoundary && rbody.velocity.x > 0)
+        if (pos <= minBoundary && vel < 0)
+            rbody.velocity = Vector2.zero;
+        if (pos >= maxBoundary && vel > 0)
             rbody.velocity = Vector2.zero;
     }
 
     void MovePlayer(float _horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, 0);
-        rbody.velocity = Vector3.SmoothDamp(rbody.velocity, targetVelocity, ref velocity, .05f);
 
-        // if(isJumping == true)
-        // {
-        //     rbody.AddForce(new Vector2(0f, jumpForce));
-        //     isJumping = false;
-        // }
+        Vector2 targetVelocity = Vector2.zero;
+        if (defaultDirection == Direction.Horizontal)
+            targetVelocity = new Vector2(_horizontalMovement, rbody.velocity.y);
+        else
+            targetVelocity = new Vector2(rbody.velocity.x, _horizontalMovement);
+        rbody.velocity = Vector3.SmoothDamp(rbody.velocity, targetVelocity, ref velocity, .05f);
     }
 
     void Flip(float _velocity)
@@ -116,7 +121,12 @@ public class PlatformScript : Character
 
     public override void FixedUpdateAutoMoving()
     {
-        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        float pos;
+        if (defaultDirection == Direction.Horizontal)
+            pos = transform.position.x;
+        else
+            pos = transform.position.y;
+        if (pos <= minBoundary || pos >= maxBoundary)
         {
             rbody.velocity *= -1;
             invertCachedSens();

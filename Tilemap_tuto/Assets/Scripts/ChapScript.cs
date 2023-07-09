@@ -46,9 +46,10 @@ public class ChapScript : Character
         if (defaultDirection == Direction.Vertical)
         {
             defaultOffsetHitbox = proxyCollider.offset.x;
-            maxOffsetHitbox = (transformBottomHitBoxWhenElongated.position.x - transform.position.x) - defaultOffsetHitbox;
+            maxOffsetHitbox = getAlphaRotation() * (transformBottomHitBoxWhenElongated.position.x - transform.position.x) - defaultOffsetHitbox;
             otherDefaultOffsetHitbox = proxyCollider.offset.y;
         }
+        // maxOffsetHitbox = 0;
 
         printDebug = true;
     }
@@ -71,7 +72,11 @@ public class ChapScript : Character
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
+        // float horizontalMovement = 0;
         float horizontalMovement = move.x * defaultControllableVelocity * Time.deltaTime;
+        // if (defaultDirection == Direction.Horizontal)
+        // else
+        //     horizontalMovement = move.y * defaultControllableVelocity * Time.deltaTime;
 
         if (jump.action.IsPressed()) {
             if (!isElongating) {
@@ -87,6 +92,7 @@ public class ChapScript : Character
                 deltaOffsetHitbox -= rateElongationOffsetHitbox;
             }
         }
+
         if (deltaOffsetHitbox < 0)
         {
             deltaOffsetHitbox = 0;
@@ -100,16 +106,23 @@ public class ChapScript : Character
 
         MovePlayer(horizontalMovement);
 
-        Flip(rbody.velocity.x);
+        float vel = rbody.velocity.x;
+        if (defaultDirection == Direction.Vertical)
+            vel = rbody.velocity.y;
+        Flip(vel);
 
-        float characterVelocity = Mathf.Abs(rbody.velocity.x);
+        float characterVelocity = Mathf.Abs(vel);
         animator.SetFloat("Speed", characterVelocity);
 
-        if ((transform.position.x <= minBoundary && rbody.velocity.x < 0) || jump.action.IsPressed())
-        {
-            rbody.velocity = Vector2.zero;
+        float pos = transform.position.x;
+        float vel_ = rbody.velocity.x;
+        if (defaultDirection == Direction.Vertical) {
+            pos = transform.position.y;
+            vel_ = rbody.velocity.y;
         }
-        if ((transform.position.x >= maxBoundary && rbody.velocity.x > 0) || jump.action.IsPressed())
+        if ((pos <= minBoundary && vel_ < 0) || jump.action.IsPressed())
+            rbody.velocity = Vector2.zero;
+        if ((pos >= maxBoundary && vel_ > 0) || jump.action.IsPressed())
             rbody.velocity = Vector2.zero;
     }
 
@@ -123,14 +136,12 @@ public class ChapScript : Character
 
     void MovePlayer(float _horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rbody.velocity.y);
+        Vector2 targetVelocity = Vector2.zero;
+        if (defaultDirection == Direction.Horizontal)
+            targetVelocity = new Vector2(_horizontalMovement, rbody.velocity.y);
+        else
+            targetVelocity = new Vector2(rbody.velocity.x, _horizontalMovement);
         rbody.velocity = Vector3.SmoothDamp(rbody.velocity, targetVelocity, ref velocity, .05f);
-
-        if(isJumping == true)
-        {
-            rbody.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
-        }
     }
 
     void Flip(float _velocity)
@@ -138,10 +149,23 @@ public class ChapScript : Character
         if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;
-        }else if(_velocity < -0.1f)
+        } else if(_velocity < -0.1f)
         {
             spriteRenderer.flipX = true;
         }
+        // if (_velocity > 0.1f)
+        // {
+        //     if (defaultDirection == Direction.Horizontal)
+        //         spriteRenderer.flipX = false;
+        //     else
+        //         spriteRenderer.flipY = false;
+        // } else if(_velocity < -0.1f)
+        // {
+        //     if (defaultDirection == Direction.Horizontal)
+        //         spriteRenderer.flipX = true;
+        //     else
+        //         spriteRenderer.flipY = true;
+        // }
     }
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
@@ -157,7 +181,12 @@ public class ChapScript : Character
 
     public override void FixedUpdateAutoMoving()
     {
-        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        float pos;
+        if (defaultDirection == Direction.Horizontal)
+            pos = transform.position.x;
+        else
+            pos = transform.position.y;
+        if (pos <= minBoundary || pos >= maxBoundary)
         {
             rbody.velocity *= -1;
             invertCachedSens();

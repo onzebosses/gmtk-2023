@@ -160,9 +160,9 @@ public class ChapScript : Character
     private void updateColliderWithOffset()
     {
         if (defaultDirection == Direction.Horizontal)
-            proxyCollider.offset = new Vector2(otherDefaultOffsetHitbox, defaultOffsetHitbox + deltaOffsetHitbox);
+            proxyCollider.offset = new Vector2(otherDefaultOffsetHitbox, defaultOffsetHitbox - deltaOffsetHitbox);
         if (defaultDirection == Direction.Vertical)
-            proxyCollider.offset = new Vector2(defaultOffsetHitbox + deltaOffsetHitbox, otherDefaultOffsetHitbox);
+            proxyCollider.offset = new Vector2(defaultOffsetHitbox - deltaOffsetHitbox, otherDefaultOffsetHitbox);
     }
 
     void MovePlayer(float _horizontalMovement)

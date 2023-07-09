@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behavior: 2
   defaultControllableVelocity: 300
-  defaultAutoMoveVelocity: 1
+  defaultAutoMoveVelocity: 3
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -1468,8 +1468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: 0
-  defaultControllableVelocity: 1
-  defaultAutoMoveVelocity: 1
+  defaultControllableVelocity: 300
+  defaultAutoMoveVelocity: 3
   jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -6259,7 +6259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behavior: 1
   defaultControllableVelocity: 300
-  defaultAutoMoveVelocity: 1
+  defaultAutoMoveVelocity: 3
   jumpForce: 0
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
@@ -6529,7 +6529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1380668032
 Transform:
   m_ObjectHideFlags: 0

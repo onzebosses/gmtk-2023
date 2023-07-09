@@ -8,6 +8,7 @@ public class PepitoScript : Character
     private bool isJumping;
     private bool isGrounded;
     private bool isAirborneAndStill;
+    private bool isAirborneAndAutoMoving;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -83,9 +84,18 @@ public class PepitoScript : Character
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
-        rbody.bodyType = RigidbodyType2D.Kinematic;
-        SetVelocity(defaultAutoMoveVelocity);
-        getMinMaxBoundaries();
+        rbody.bodyType = RigidbodyType2D.Dynamic;
+
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+        if (!isGrounded)
+            isAirborneAndAutoMoving = true;
+        else {
+            isAirborneAndAutoMoving = false;
+            rbody.bodyType = RigidbodyType2D.Kinematic;
+            SetVelocity(defaultAutoMoveVelocity);
+            getMinMaxBoundaries();
+        }
+
         if (printDebug){
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW AUTO-MOVING!!!");
@@ -94,7 +104,15 @@ public class PepitoScript : Character
 
     public override void FixedUpdateAutoMoving()
     {
-        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+        bool isOnPlatform = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckLeft.position) && Physics2D.OverlapArea(groundCheckRight.position, groundCheckRight.position);
+        if (isGrounded && isAirborneAndAutoMoving)
+        {
+            isAirborneAndAutoMoving = false;
+            rbody.bodyType = RigidbodyType2D.Kinematic;
+            SetVelocity(defaultAutoMoveVelocity);
+            getMinMaxBoundaries();
+        } else if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary || !isOnPlatform)
         {
             rbody.velocity *= -1;
             invertCachedSens();

@@ -57,6 +57,13 @@ public class ChapScript : Character
 
         float characterVelocity = Mathf.Abs(rbody.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
+
+        if (transform.position.x <= minBoundary && rbody.velocity.x < 0)
+        {
+            rbody.velocity = Vector2.zero;
+        }
+        if (transform.position.x >= maxBoundary && rbody.velocity.x > 0)
+            rbody.velocity = Vector2.zero;
     }
 
     void MovePlayer(float _horizontalMovement)
@@ -105,7 +112,6 @@ public class ChapScript : Character
     public override void ChangeBehaviorToStill(CharacterState otherData)
     {
         rbody.bodyType = RigidbodyType2D.Static;
-        currentState.vel = rbody.velocity;
 
         if (printDebug){
             Debug.Log(gameObject.name);

@@ -22,13 +22,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "523c81a4-73ff-4a61-96db-c3d5d2589822",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "2D Vector",
                     "id": "5c611015-7476-429a-9380-90fa797ba642",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -37,7 +46,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Up",
                     "id": "7d58eadf-71af-4aaf-adeb-26dddd9ecfd4",
                     "path": "<Keyboard>/z",
                     "interactions": "",
@@ -48,7 +57,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "Down",
                     "id": "151f4c06-610f-4d77-a9c8-31ebfa54b6d7",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -59,8 +68,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "badec301-0cbb-4b62-87ec-572f3f94ef3c",
+                    "name": "Left",
+                    "id": "520c8335-aca9-4af6-a6e9-3eb939a35e93",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -70,8 +79,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "4f3d782f-547a-437a-b410-114f8266c2bf",
+                    "name": "Right",
+                    "id": "0087957e-8454-49bc-ac1c-85e2569f7655",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -88,6 +97,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e79555ca-d184-4239-a7e3-acfdceddc0d3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -121,7 +141,7 @@
                     "name": "",
                     "id": "39f08e95-e973-4308-94f5-5235bddc2119",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",

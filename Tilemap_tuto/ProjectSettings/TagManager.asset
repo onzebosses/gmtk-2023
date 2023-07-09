@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BehaviorSwapper
+  - Character
+  - Plateform
+  - PauseBroker
   layers:
   - Default
   - TransparentFX

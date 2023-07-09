@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelMove_Ref : MonoBehaviour
 {
     public int sceneBuildIndex;
+    public Animator transition;
+    public float transitionTime;
 
     // Level move zoned enter, if collider is a player
     // Move game to another scene
@@ -21,5 +23,16 @@ public class LevelMove_Ref : MonoBehaviour
             print("Switching Scene to " + sceneBuildIndex);
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
         }
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        //Play animation
+        transition.SetTrigger("Start");
+
+        //Wait
+        yield return new WaitForSeconds(transitionTime);
+        //Load scene
+        SceneManager.LoadScene(levelIndex);
     }
 }

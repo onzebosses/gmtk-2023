@@ -53,6 +53,8 @@ public abstract class Character : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        movement.action.Enable();
+        jump.action.Enable();
         cachedSens = 1;
         // Detect alpha with rotation
         alphaRotation = 1;

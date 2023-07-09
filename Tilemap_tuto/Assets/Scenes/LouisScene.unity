@@ -704,13 +704,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: 0
-  defaultControllableVelocity: 0
-  defaultAutoMoveVelocity: 0
-  jumpForce: 0
+  defaultControllableVelocity: 300
+  defaultAutoMoveVelocity: 300
+  jumpForce: 600
   movement: {fileID: 2322858470283627273, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   jump: {fileID: -7539415124174108135, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
   isFrozen: 0
-  isSwappable: 0
+  isSwappable: 1
   minBoundaryTransform: {fileID: 844506343}
   maxBoundaryTransform: {fileID: 336653917}
   minBoundary: 0
@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 3e6768b8c8fdd8942b1b30e936a3b391, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -7018,6 +7018,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 300
   jumpForce: 600
+  isMoving: 0
+  isGrounded: 0
   groundCheckLeft: {fileID: 739058725}
   groundCheckRight: {fileID: 1681593826}
   rb: {fileID: 1958597057}

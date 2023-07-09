@@ -7,6 +7,7 @@ TagManager:
   - BehaviorSwapper
   - Character
   - Plateform
+  - PauseBroker
   layers:
   - Default
   - TransparentFX

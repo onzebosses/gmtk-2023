@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum Behavior {Controllable, AutoMoving, Still, Bounce};
+public enum Direction {Vertical, Horizontal};
 
 public class CharacterState
 {
-
+    public Vector2 vel;
 }
 
 
@@ -14,14 +16,63 @@ public class CharacterState
 // Behavior = column of table
 public abstract class Character : MonoBehaviour
 {
+    // BEHAVIOR
     public Behavior behavior;
-    public bool isFrozen;
-    public CharacterState previousState;
     public CharacterState currentState;
+    public CharacterState previousState;
+
+    public float moveSpeed;
+    public float jumpForce;
+
+    [SerializeField]
+    public InputActionReference movement, jump;
+
+    public bool isFrozen;
     public bool isSwappable;
 
+    // RELATIVE TO MOVING BOUNDARIES
+    // When switching to auto-move, these set the boundaries
+    public Transform minBoundaryTransform;
+    public Transform maxBoundaryTransform;
+    public float minBoundary;
+    public float maxBoundary;
+    public Direction defaultDirection;
+
+    // PHYSICS
+    public Rigidbody2D rbody;
+    public Vector2 velBeforeFreeze;
+    public float gravScaleBeforeFreeze;
+
     // Start is called before the first frame update
-    public abstract void Start();
+    public virtual void Start()
+    {
+        getMinMaxBoundaries();
+    }
+
+    // TODO: make sure we call that when we switch to auto-move
+    public void getMinMaxBoundaries()
+    {
+        switch(defaultDirection){
+            case Direction.Horizontal:
+                minBoundary = minBoundaryTransform.position.x;
+                maxBoundary = maxBoundaryTransform.position.x;
+                break;
+            case Direction.Vertical:
+                minBoundary = minBoundaryTransform.position.y;
+                maxBoundary = maxBoundaryTransform.position.y;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setDefaultVelocity(float sign)
+    {
+        if (defaultDirection == Direction.Horizontal)
+            rbody.velocity = new Vector2(sign * moveSpeed, 0);
+        if (defaultDirection == Direction.Vertical)
+            rbody.velocity = new Vector2(0, sign * moveSpeed);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -86,7 +137,25 @@ public abstract class Character : MonoBehaviour
 
     public abstract void FixedUpdateBounce();
 
-    public abstract void freezeCharacter();
+    public void freezeCharacter() 
+    {
+        if (rbody.bodyType != RigidbodyType2D.Static)
+        {
+            velBeforeFreeze = rbody.velocity;
+            gravScaleBeforeFreeze = rbody.gravityScale;
 
-    public abstract void unfreezeCharacter();
+            rbody.velocity = Vector2.zero;
+            rbody.gravityScale = 0;
+        }
+    }
+
+    public void unfreezeCharacter(bool hasNotBeenSwapped)
+    {
+        if (rbody.bodyType != RigidbodyType2D.Static) {
+            // TODO: if has been swapped, do we need to set back to velBeforeFreeze
+            if (hasNotBeenSwapped)
+                rbody.velocity = velBeforeFreeze;
+            rbody.gravityScale = gravScaleBeforeFreeze;
+        }
+    }
 }

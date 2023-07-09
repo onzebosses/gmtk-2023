@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PepitoScript : Character
+public class PlatformScript : Character
 {
-    public float moveSpeed;
-    public float jumpForce;
+    public float impulsionStrength;
 
     private bool isJumping;
     private bool isGrounded;
+    private bool impulsionBeingApplied;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
 
-    public Rigidbody2D rbody;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
@@ -23,46 +22,24 @@ public class PepitoScript : Character
 
     public bool printDebug;
 
-    [SerializeField]
-    private InputActionReference movement, jump;
-
     // Start is called before the first frame update
     public override void Start()
     {
-       behavior = Behavior.Controllable; 
-       printDebug = true;
+        base.Start();
+        rbody.bodyType = RigidbodyType2D.Static;
+        behavior = Behavior.Still; 
+        printDebug = true;
     }
 
     public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
+        rbody.bodyType = RigidbodyType2D.Kinematic;
+        rbody.velocity = Vector2.zero;
+        getMinMaxBoundaries();
+
         if (printDebug) {
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW CONTROLLABLE!!!");
-        }
-
-    }
-
-    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW AUTO-MOVING!!!");
-        }
-    }
-
-    public override void ChangeBehaviorToStill(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW STILL!!!");
-        }
-    }
-
-    public override void ChangeBehaviorToBounce(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW STILL!!!");
         }
     }
 
@@ -73,29 +50,49 @@ public class PepitoScript : Character
 
         float horizontalMovement = move.x * moveSpeed * Time.deltaTime;
 
-        if (jump.action.IsPressed() && isGrounded)
+        // TODO: impulse
+        if (jump.action.IsPressed() && false)
         {
-            isJumping = true;
+            impulsionBeingApplied = true;
+            rbody.bodyType = RigidbodyType2D.Dynamic;
+            float sign = -1;
+            // TODO: What if velocity is 0?
+            if (velocity.x > 0)
+                sign = 1;
+            rbody.AddForce(sign * (new Vector2(impulsionStrength, 0)), ForceMode2D.Impulse);
+        }
+
+        // TODO: dampen the impulsion
+        if (impulsionBeingApplied && false)
+        {
         }
 
         MovePlayer(horizontalMovement);
 
+        // TODO
         Flip(rbody.velocity.x);
 
         float characterVelocity = Mathf.Abs(rbody.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
+
+        if (transform.position.x <= minBoundary && rbody.velocity.x < 0)
+        {
+            rbody.velocity = Vector2.zero;
+        }
+        if (transform.position.x >= maxBoundary && rbody.velocity.x > 0)
+            rbody.velocity = Vector2.zero;
     }
 
     void MovePlayer(float _horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rbody.velocity.y);
+        Vector3 targetVelocity = new Vector2(_horizontalMovement, 0);
         rbody.velocity = Vector3.SmoothDamp(rbody.velocity, targetVelocity, ref velocity, .05f);
 
-        if(isJumping == true)
-        {
-            rbody.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
-        }
+        // if(isJumping == true)
+        // {
+        //     rbody.AddForce(new Vector2(0f, jumpForce));
+        //     isJumping = false;
+        // }
     }
 
     void Flip(float _velocity)
@@ -103,9 +100,18 @@ public class PepitoScript : Character
         if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;
-        }else if(_velocity < -0.1f)
+        } else if(_velocity < -0.1f)
         {
             spriteRenderer.flipX = true;
+        }
+    }
+
+    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
+    {
+        rbody.bodyType = RigidbodyType2D.Kinematic;
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW AUTO-MOVING!!!");
         }
     }
 
@@ -114,9 +120,28 @@ public class PepitoScript : Character
 
     }
 
+    public override void ChangeBehaviorToStill(CharacterState otherData)
+    {
+        // currentState.previousVel = rbody.velocity;
+        rbody.bodyType = RigidbodyType2D.Static;
+
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW STILL!!!");
+        }
+    }
+
     public override void FixedUpdateStill()
     {
 
+    }
+
+    public override void ChangeBehaviorToBounce(CharacterState otherData)
+    {
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW STILL!!!");
+        }
     }
 
     public override void FixedUpdateBounce()
@@ -124,15 +149,15 @@ public class PepitoScript : Character
 
     }
 
-    public override void freezeCharacter()
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log("I AM FROZEN!!!");
-    }
+    // public override void freezeCharacter()
+    // {
+    //     Debug.Log(gameObject.name);
+    //     Debug.Log("I AM FROZEN!!!");
+    // }
 
-    public override void unfreezeCharacter()
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log("I AM LIBREEEEEEEEEE!!!");
-    }
+    // public override void unfreezeCharacter()
+    // {
+    //     Debug.Log(gameObject.name);
+    //     Debug.Log("I AM LIBREEEEEEEEEE!!!");
+    // }
 }

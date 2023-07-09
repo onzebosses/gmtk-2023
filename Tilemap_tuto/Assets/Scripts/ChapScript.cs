@@ -3,67 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PepitoScript : Character
+public class ChapScript : Character
 {
-    public float moveSpeed;
-    public float jumpForce;
-
     private bool isJumping;
     private bool isGrounded;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
 
-    public Rigidbody2D rbody;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     public Vector2 move;
+    public float sign;
 
     public bool printDebug;
-
-    [SerializeField]
-    private InputActionReference movement, jump;
 
     // Start is called before the first frame update
     public override void Start()
     {
-       behavior = Behavior.Controllable; 
-       printDebug = true;
+        base.Start();
+        CharacterState dummyState = new CharacterState();
+        sign = 1;
+        ChangeBehaviorToAutoMoving(dummyState);
+        getMinMaxBoundaries();
+
+        printDebug = true;
     }
 
     public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
+        rbody.bodyType = RigidbodyType2D.Kinematic;
         if (printDebug) {
             Debug.Log(gameObject.name);
             Debug.Log("I AM NOW CONTROLLABLE!!!");
         }
 
-    }
-
-    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW AUTO-MOVING!!!");
-        }
-    }
-
-    public override void ChangeBehaviorToStill(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW STILL!!!");
-        }
-    }
-
-    public override void ChangeBehaviorToBounce(CharacterState otherData)
-    {
-        if (printDebug){
-            Debug.Log(gameObject.name);
-            Debug.Log("I AM NOW STILL!!!");
-        }
     }
 
     public override void FixedUpdateControllable()
@@ -109,9 +85,35 @@ public class PepitoScript : Character
         }
     }
 
+    public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
+    {
+        rbody.bodyType = RigidbodyType2D.Kinematic;
+        setDefaultVelocity(sign);
+
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW AUTO-MOVING!!!");
+        }
+    }
+
     public override void FixedUpdateAutoMoving()
     {
+        if (transform.position.x <= minBoundary || transform.position.x >= maxBoundary)
+        {
+            rbody.velocity *= -1;
+            sign *= -1;
+        }
+    }
 
+    public override void ChangeBehaviorToStill(CharacterState otherData)
+    {
+        rbody.bodyType = RigidbodyType2D.Static;
+        currentState.vel = rbody.velocity;
+
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW STILL!!!");
+        }
     }
 
     public override void FixedUpdateStill()
@@ -119,20 +121,28 @@ public class PepitoScript : Character
 
     }
 
+    public override void ChangeBehaviorToBounce(CharacterState otherData)
+    {
+        if (printDebug){
+            Debug.Log(gameObject.name);
+            Debug.Log("I AM NOW STILL!!!");
+        }
+    }
+
     public override void FixedUpdateBounce()
     {
 
     }
 
-    public override void freezeCharacter()
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log("I AM FROZEN!!!");
-    }
+    // public override void freezeCharacter()
+    // {
+    //     Debug.Log(gameObject.name);
+    //     Debug.Log("I AM FROZEN!!!");
+    // }
 
-    public override void unfreezeCharacter()
-    {
-        Debug.Log(gameObject.name);
-        Debug.Log("I AM LIBREEEEEEEEEE!!!");
-    }
+    // public override void unfreezeCharacter()
+    // {
+    //     Debug.Log(gameObject.name);
+    //     Debug.Log("I AM LIBREEEEEEEEEE!!!");
+    // }
 }

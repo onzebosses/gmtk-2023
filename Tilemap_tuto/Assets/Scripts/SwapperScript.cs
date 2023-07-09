@@ -100,11 +100,11 @@ public class BehaviorSwapper : MonoBehaviour
             case SwapperStatus.OnOneClicked:
                 character2 = clickedCharacter;
                 swapBehaviors();
-                character1 = null;
-                character2 = null;
                 status = SwapperStatus.Off;
                 // QUESTION: does the swap happens immediatly?
                 unfreezeGame();
+                character1 = null;
+                character2 = null;
                 break;
             default:
                 break;
@@ -129,6 +129,7 @@ public class BehaviorSwapper : MonoBehaviour
         foreach(GameObject gameObject in allCharacterGameObjects)
         {
             Character character = gameObject.GetComponent<Character>();
+            // TODO: Visual change to handle!!!
             character.freezeCharacter();
         }
 
@@ -143,7 +144,8 @@ public class BehaviorSwapper : MonoBehaviour
         foreach(GameObject gameObject in allCharacterGameObjects)
         {
             Character character = gameObject.GetComponent<Character>();
-            character.unfreezeCharacter();
+            bool hasNotBeenSwapped = !(character == character1 || character == character2);
+            character.unfreezeCharacter(hasNotBeenSwapped);
         }
 
         if (printDebug)
@@ -161,7 +163,9 @@ public class BehaviorSwapper : MonoBehaviour
         {
             Debug.Log("SWAPPED BEHAVIORS!!!");
             Debug.Log(character1.name);
+            Debug.Log(character1.behavior);
             Debug.Log(character2.name);
+            Debug.Log(character2.behavior);
         }
     }
 

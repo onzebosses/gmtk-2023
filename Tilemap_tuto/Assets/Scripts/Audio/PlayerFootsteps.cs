@@ -17,7 +17,8 @@ public class PlayerFootsteps : MonoBehaviour
 
     private void Update()
     {
-        if (player.isMoving && player.isGrounded)
+        // if (player.isMoving && player.isGrounded)
+        if (false)
         {
             PLAYBACK_STATE playbackState;
             playerFootsteps.getPlaybackState(out playbackState);

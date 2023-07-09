@@ -9,6 +9,8 @@ public class PepitoScript : Character
     private bool isGrounded;
     private bool isAirborneAndStill;
     private bool isAirborneAndAutoMoving;
+    private bool hasStartJump;
+    private bool hasLanded;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -32,6 +34,9 @@ public class PepitoScript : Character
     {
         rbody.bodyType = RigidbodyType2D.Dynamic;
         rbody.velocity = Vector2.zero;
+        animator.SetBool("IsControlled", true);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", false);
 
         if (printDebug) {
             Debug.Log(gameObject.name);
@@ -61,6 +66,10 @@ public class PepitoScript : Character
 
     public override void FixedUpdateControllable()
     {
+        if (hasStartJump)
+        {
+            hasStartJump = false;
+        }
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
@@ -68,7 +77,18 @@ public class PepitoScript : Character
 
         if (jump.action.IsPressed() && isGrounded)
         {
-            isJumping = true;
+           isJumping = true;
+           hasStartJump = true;
+           hasLanded = false;
+           animator.SetBool("StartJump", true);
+           animator.SetBool("JustLanded", false);
+        }
+        
+        if (!hasStartJump && !hasLanded && isGrounded)
+        {
+            hasLanded = true;
+            animator.SetBool("StartJump", false);
+            animator.SetBool("JustLanded", true);
         }
 
         MovePlayer(horizontalMovement);
@@ -108,6 +128,9 @@ public class PepitoScript : Character
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", true);
+        animator.SetBool("IsStill", false);
         rbody.bodyType = RigidbodyType2D.Dynamic;
 
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
@@ -141,13 +164,20 @@ public class PepitoScript : Character
             rbody.velocity *= -1;
             invertCachedSens();
         }
+
+        Flip(rbody.velocity.x);
+
         Vector2 groundVel = getGroundVelocity();
         // rbody.velocity += groundVel;
         transform.position += new Vector3(groundVel.x * Time.deltaTime, groundVel.y * Time.deltaTime, 0);
+
     }
 
     public override void ChangeBehaviorToStill(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", true);
         rbody.velocity = Vector2.zero;
         isAirborneAndStill = !isGrounded;
         if (isGrounded)

@@ -114,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 2018410558311797394}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5870381431651164301
 GameObject:
@@ -230,6 +230,10 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: d4bcec40-4f67-407f-9901-c20c36a99fc6
     m_ActionName: MouseMovement/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 523c81a4-73ff-4a61-96db-c3d5d2589822
+    m_ActionName: PlayerMovement/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MouseMovement

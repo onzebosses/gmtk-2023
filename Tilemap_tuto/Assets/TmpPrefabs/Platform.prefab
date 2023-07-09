@@ -69,7 +69,7 @@ Transform:
   - {fileID: 7731313043465826529}
   - {fileID: 6222396685096562261}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &689093995535694168
 MonoBehaviour:
@@ -188,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 6948539407606964958}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa981ed3fea786446b2f7b074b8686d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 556691d1180a14252b77e47c7061ba4c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

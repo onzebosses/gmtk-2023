@@ -7,6 +7,8 @@ public class ChapScript : Character
 {
     private bool isJumping;
     private bool isGrounded;
+    private bool hasStartJump;
+    private bool hasLanded;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -56,6 +58,9 @@ public class ChapScript : Character
 
     public override void ChangeBehaviorToControllable(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", true);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", false);
         rbody.bodyType = RigidbodyType2D.Kinematic;
         rbody.velocity = Vector2.zero;
         isElongating = false;
@@ -69,6 +74,8 @@ public class ChapScript : Character
 
     public override void FixedUpdateControllable()
     {
+        bool isAnimatorDescending, isAnimatorAscending;
+        bool isAnimatorDescended, isAnimatorAscended;
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
         move = movement.action.ReadValue<Vector2>();
 
@@ -85,16 +92,25 @@ public class ChapScript : Character
             if (!isElongating) {
                 isElongating = true;
             }
+            isAnimatorAscending = true;
+            isAnimatorDescending = false;
+
             if (deltaOffsetHitbox < maxOffsetHitbox)
             {
                deltaOffsetHitbox += rateElongationOffsetHitbox;
             }
         } else {
+            isElongating = false;
+            isAnimatorAscending = false;
+            isAnimatorDescending = true;
             if (deltaOffsetHitbox > 0)
             {
                 deltaOffsetHitbox -= rateElongationOffsetHitbox;
             }
         }
+
+        animator.SetBool("IsAscending", isAnimatorAscending);
+        animator.SetBool("IsDescending", isAnimatorDescending);
 
         if (deltaOffsetHitbox < 0)
         {
@@ -104,6 +120,18 @@ public class ChapScript : Character
         {
             deltaOffsetHitbox = maxOffsetHitbox;
         }
+
+        if (deltaOffsetHitbox == maxOffsetHitbox)
+            isAnimatorAscended = true;
+        else
+            isAnimatorAscended = false;
+        if (deltaOffsetHitbox == 0)
+            isAnimatorDescended = true;
+        else
+            isAnimatorDescended = false;
+
+        animator.SetBool("IsAscended", isAnimatorAscended);
+        animator.SetBool("IsDescended", isAnimatorDescended);
 
         updateColliderWithOffset();
 
@@ -173,6 +201,9 @@ public class ChapScript : Character
 
     public override void ChangeBehaviorToAutoMoving(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", true);
+        animator.SetBool("IsStill", false);
         rbody.bodyType = RigidbodyType2D.Kinematic;
         SetVelocity(defaultAutoMoveVelocity);
 
@@ -198,6 +229,9 @@ public class ChapScript : Character
 
     public override void ChangeBehaviorToStill(CharacterState otherData)
     {
+        animator.SetBool("IsControlled", false);
+        animator.SetBool("IsAutoMoving", false);
+        animator.SetBool("IsStill", true);
         rbody.bodyType = RigidbodyType2D.Static;
 
         if (printDebug){

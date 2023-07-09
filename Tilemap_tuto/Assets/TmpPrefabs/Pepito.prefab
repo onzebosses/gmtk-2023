@@ -38,7 +38,7 @@ Transform:
   - {fileID: 369021056217919238}
   - {fileID: 2788645027055905737}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5339642273921756569
 MonoBehaviour:
@@ -64,7 +64,7 @@ MonoBehaviour:
   maxBoundaryTransform: {fileID: 2788645027055905737}
   minBoundary: 0
   maxBoundary: 0
-  defaultDirection: 0
+  defaultDirection: 1
   rbody: {fileID: 3987206044756069854}
   velBeforeFreeze: {x: 0, y: 0}
   gravScaleBeforeFreeze: 0
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1026294594, guid: 6dfcd3eae1ebddd4e8a7ea120019bd32, type: 3}
-  m_Color: {r: 0.105689146, g: 0.46226418, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

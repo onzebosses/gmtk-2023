@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &745911111889509280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138711848175635558}
+  m_Layer: 0
+  m_Name: Managers 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138711848175635558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745911111889509280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1422927105347996018}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5409370203436822342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422927105347996018}
+  - component: {fileID: 2982485666215343717}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422927105347996018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409370203436822342}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1328614870403673056}
+  m_Father: {fileID: 138711848175635558}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2982485666215343717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409370203436822342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f90d9a92147a2442b78617fba53b130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  musicVolume: 1
+  ambienceVolume: 1
+  SFXVolume: 1
+--- !u!1 &7381792977456148338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328614870403673056}
+  - component: {fileID: 4883088069951936860}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1328614870403673056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381792977456148338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422927105347996018}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4883088069951936860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381792977456148338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ead461be4b74c74fbc1312e8841bee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <menuOpen>k__BackingField:
+    Guid:
+      Data1: 1588586002
+      Data2: 1099357707
+      Data3: -82767222
+      Data4: -1484706316
+    Path: event:/MenuOpen
+  <menuClose>k__BackingField:
+    Guid:
+      Data1: -1919914235
+      Data2: 1317973050
+      Data3: -507572321
+      Data4: -503529785
+    Path: event:/MenuClose
+  <menuOver>k__BackingField:
+    Guid:
+      Data1: -867558660
+      Data2: 1084636571
+      Data3: 27827628
+      Data4: -342135364
+    Path: event:/MenuOver
+  <menuValid>k__BackingField:
+    Guid:
+      Data1: -36631401
+      Data2: 1267672338
+      Data3: 258016439
+      Data4: -1967305432
+    Path: event:/MenuValid
+  <swapMenuLoop>k__BackingField:
+    Guid:
+      Data1: -1587976963
+      Data2: 1274189470
+      Data3: -72136523
+      Data4: -46073783
+    Path: event:/SwapMenu
+  <swapMenuSelect>k__BackingField:
+    Guid:
+      Data1: -1996474111
+      Data2: 1272362160
+      Data3: 1646684083
+      Data4: 1386092514
+    Path: event:/SwapAction1
+  <lvlStartSound>k__BackingField:
+    Guid:
+      Data1: 1223083504
+      Data2: 1218396354
+      Data3: -1683330145
+      Data4: -1267499959
+    Path: event:/StartLVL
+  <lvlEndSound>k__BackingField:
+    Guid:
+      Data1: 316409307
+      Data2: 1289929585
+      Data3: -426059095
+      Data4: 1593619930
+    Path: event:/EndLVL
+  <ambience>k__BackingField:
+    Guid:
+      Data1: 1629932081
+      Data2: 1133229195
+      Data3: -1982779463
+      Data4: -125509454
+    Path: event:/Ambience LVL 1
+  <music>k__BackingField:
+    Guid:
+      Data1: -1161893320
+      Data2: 1147360606
+      Data3: -2001152109
+      Data4: -1335140749
+    Path: event:/Music LVL 1 - 1
+  <playerFootsteps>k__BackingField:
+    Guid:
+      Data1: -1042284549
+      Data2: 1116285066
+      Data3: -1259645249
+      Data4: -1648390755
+    Path: event:/PlayerFootsteps
+  <playerLandSound>k__BackingField:
+    Guid:
+      Data1: 1700632923
+      Data2: 1154405127
+      Data3: 592972936
+      Data4: -1490123930
+    Path: event:/PlayerLand
+  <playerJumpSound>k__BackingField:
+    Guid:
+      Data1: 1879604013
+      Data2: 1288935642
+      Data3: 1501512364
+      Data4: -1459459548
+    Path: event:/PlayerJump
+  <playerDespawn>k__BackingField:
+    Guid:
+      Data1: -789732508
+      Data2: 1128468255
+      Data3: 1781258427
+      Data4: -1424141562
+    Path: event:/Despawn
+  <playerRespawn>k__BackingField:
+    Guid:
+      Data1: 1252703280
+      Data2: 1226120603
+      Data3: -2140023137
+      Data4: -1173186074
+    Path: event:/Respawn
+  <moverExtender>k__BackingField:
+    Guid:
+      Data1: -996676597
+      Data2: 1228905767
+      Data3: -1332392817
+      Data4: -15220005
+    Path: event:/MoverExtender
+  <moverRetracter>k__BackingField:
+    Guid:
+      Data1: 1295363822
+      Data2: 1269273698
+      Data3: 1959452850
+      Data4: 458305590
+    Path: event:/MoverRetracter
+  <moverFootsteps>k__BackingField:
+    Guid:
+      Data1: -1578432845
+      Data2: 1169734476
+      Data3: -706545494
+      Data4: -801592546
+    Path: event:/MoverFootsteps
+  <platformSlide>k__BackingField:
+    Guid:
+      Data1: -2123973515
+      Data2: 1157123434
+      Data3: 1241417890
+      Data4: -175382885
+    Path: event:/PlatformSlide
+  <platFormFall>k__BackingField:
+    Guid:
+      Data1: 844136282
+      Data2: 1106287184
+      Data3: 606199437
+      Data4: 301229015
+    Path: event:/PlatformFall
